@@ -1,0 +1,663 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* Greenish color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --border-color: #EEEEEE; /* Light grey border */
+    --button-green: #739E6D; /* The distinct green for primary buttons */
+    --button-text-color: #FFFFFF; /* White text on green buttons */
+    --radio-border-color: #D9D9D9; /* Light grey for radio border */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--card-background); /* Light grey background for the whole page */
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    padding-bottom: 140px; /* Space for fixed footer buttons */
+}
+
+/* Header Styling */
+.checkout-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--background-color); /* White background for header */
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1001; /* Ensure header is on top */
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Ensure back button is clickable */
+}
+
+.back-icon:hover {
+    color: var(--main-accent-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    flex-grow: 1;
+    text-align: center;
+    margin-left: -44px; /* Offset to visually center title despite back icon */
+}
+
+/* Main Container */
+.checkout-container {
+    padding: 0px; /* Sections handle their own padding */
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* General Section Styling */
+.checkout-section {
+    background-color: var(--background-color); /* White background for sections */
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+    margin-bottom: 10px; /* Space between sections */
+}
+
+.checkout-section:last-of-type {
+    margin-bottom: 0; /* No margin after the last section */
+    border-bottom: none; /* No border for the very last section */
+}
+
+.section-icon-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space below icon+title */
+}
+
+.section-icon-text svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--secondary-text-color); /* Icon color */
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+/* Delivery Address Section */
+.delivery-address .address-details {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+    line-height: 1.4;
+    padding-left: 30px; /* Align with title's text */
+}
+
+/* Product Summary Section */
+.product-summary {
+    padding-top: 15px; /* Reduce top padding as radio button has its own padding */
+}
+
+/* Custom Radio Button */
+.custom-radio-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 30px; /* Space for the custom radio button */
+    margin-bottom: 15px; /* Space below the radio button line */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.custom-radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-radio-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px; /* Size of the custom radio */
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid var(--radio-border-color); /* Light grey border */
+    border-radius: 50%; /* Round shape */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* When the radio is checked, change background and add inner dot */
+.custom-radio-container input:checked ~ .custom-radio-checkmark {
+    background-color: var(--main-accent-color); /* Green background */
+    border-color: var(--main-accent-color);
+}
+
+.custom-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show inner dot when checked */
+.custom-radio-container input:checked ~ .custom-radio-checkmark:after {
+    display: block;
+}
+
+/* Style the inner dot */
+.custom-radio-container .custom-radio-checkmark:after {
+    top: 6px; /* Position inner dot */
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white; /* White inner dot */
+}
+
+
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0 0 0; /* Align product item with radio button text */
+    border-top: 1px solid var(--border-color); /* Separator above product item */
+    margin-top: 15px; /* Space above separator */
+}
+
+.item-image-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: var(--card-background); /* Light grey background for image container */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.product-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+}
+
+.product-price-item {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--secondary-text-color); /* Price for individual item is grey */
+    margin: 0;
+}
+
+/* Shipping Options Section */
+.shipping-options {
+    padding-bottom: 0; /* Remove bottom padding as subtotal has own spacing */
+}
+
+.shipping-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px; /* Space below each line */
+}
+
+.shipping-line:first-of-type {
+    margin-bottom: 10px; /* Extra space after "Pesan untuk Penjual" */
+}
+
+.input-placeholder {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    text-align: right; /* Text aligned right */
+    width: 60%; /* Adjust width to fit content */
+}
+
+.input-placeholder-right {
+    font-size: 14px;
+    color: var(--primary-text-color); /* "J&T" is darker */
+    text-align: right;
+    font-weight: 500;
+}
+
+.shipping-detail-card {
+    background-color: var(--card-background); /* Light grey card for shipping option */
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px; /* Space above card */
+    margin-bottom: 20px; /* Space below card, before subtotal */
+}
+
+.shipping-option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align text at top */
+}
+
+.option-type {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin: 0 0 5px 0;
+}
+
+.option-description {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 200px; /* Limit width for description */
+}
+
+.option-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--secondary-text-color); /* Price is grey for this section */
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.subtotal-summary {
+    padding-top: 20px; /* Space above subtotal summary */
+    border-top: 1px dashed var(--border-color); /* Dashed separator */
+}
+
+.subtotal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* Space between subtotal lines */
+}
+
+.subtotal-item:last-child {
+    margin-bottom: 0;
+}
+
+.subtotal-label {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.subtotal-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+/* Payment Method Section */
+.payment-method {
+    padding-bottom: 20px; /* Add bottom padding */
+}
+.payment-details {
+    padding-left: 30px; /* Align with icon text */
+}
+
+.payment-type {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0 0 5px 0;
+}
+
+.payment-info {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.payment-amount {
+    font-weight: 600;
+    color: var(--main-accent-color); /* Green amount */
+}
+
+/* Payment Details Summary Section */
+.payment-details-summary {
+    padding-bottom: 20px;
+}
+
+.payment-details-summary .section-title {
+    margin-bottom: 15px; /* Space below title */
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.summary-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+.total-payment-row {
+    margin-top: 15px; /* Space above total payment row */
+    padding-top: 15px; /* Padding above total payment row */
+    border-top: 1px dashed var(--border-color); /* Dashed line above total */
+}
+
+.total-payment-row .summary-label,
+.total-payment-row .summary-value {
+    font-size: 16px; /* Larger font for total payment */
+    font-weight: 600;
+    color: var(--primary-text-color);
+}
+
+
+/* Footer (Total and Buttons) */
+.checkout-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 15px 20px;
+    box-shadow: 0 -2px 4px var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.total-summary-left {
+    flex-shrink: 0;
+    margin-right: 20px; /* Space between total and buttons */
+}
+
+.total-label {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.final-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+.saving-info {
+    font-size: 12px;
+    color: var(--main-accent-color); /* Green saving info */
+    margin: 0;
+    font-weight: 500;
+}
+
+.checkout-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between buttons */
+    flex-grow: 1; /* Allow buttons to take available width */
+}
+
+.action-button {
+    width: 100%; /* Fill parent width */
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.primary-button {
+    background-color: var(--button-green); /* Primary green button */
+    color: var(--button-text-color);
+}
+
+.primary-button:hover {
+    background-color: #5C7F27; /* Darker green on hover */
+}
+
+.secondary-button {
+    background-color: transparent; /* Transparent background */
+    border: 1px solid var(--main-accent-color); /* Green border */
+    color: var(--main-accent-color); /* Green text */
+}
+
+.secondary-button:hover {
+    background-color: var(--main-accent-color); /* Fill green on hover */
+    color: var(--button-text-color); /* White text on hover */
+}
+
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+@media (max-width: 768px) {
+    .checkout-header {
+        padding: 12px 15px;
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .header-title {
+        font-size: 18px;
+        margin-left: -30px;
+    }
+
+    .checkout-section {
+        padding: 15px;
+        margin-bottom: 8px;
+    }
+
+    .section-icon-text {
+        margin-bottom: 8px;
+    }
+
+    .section-icon-text svg {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+    }
+
+    .section-title {
+        font-size: 15px;
+    }
+
+    .delivery-address .address-details {
+        font-size: 13px;
+        padding-left: 26px;
+    }
+
+    .product-summary {
+        padding-top: 12px;
+    }
+
+    .custom-radio-container {
+        padding-left: 28px;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    .custom-radio-checkmark {
+        height: 18px;
+        width: 18px;
+        border-width: 1.5px;
+    }
+
+    .custom-radio-checkmark:after {
+        top: 5px;
+        left: 5px;
+        width: 7px;
+        height: 7px;
+    }
+
+    .product-item {
+        padding: 12px 0 0 0;
+        margin-top: 12px;
+    }
+
+    .item-image-wrapper {
+        width: 70px;
+        height: 70px;
+        margin-right: 12px;
+    }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .product-name {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .product-price-item {
+        font-size: 13px;
+    }
+
+    .shipping-line {
+        padding-bottom: 12px;
+    }
+
+    .input-placeholder, .input-placeholder-right {
+        font-size: 13px;
+    }
+
+    .shipping-detail-card {
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 15px;
+    }
+
+    .option-type {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .option-description {
+        font-size: 12px;
+    }
+
+    .option-price {
+        font-size: 14px;
+    }
+
+    .subtotal-summary {
+        padding-top: 15px;
+    }
+
+    .subtotal-item {
+        margin-bottom: 6px;
+    }
+
+    .subtotal-label, .subtotal-value {
+        font-size: 13px;
+    }
+
+    .payment-details {
+        padding-left: 26px;
+    }
+
+    .payment-type, .payment-info {
+        font-size: 13px;
+    }
+
+    .payment-details-summary {
+        padding-bottom: 15px;
+    }
+
+    .payment-details-summary .section-title {
+        margin-bottom: 12px;
+    }
+
+    .summary-item {
+        margin-bottom: 6px;
+    }
+
+    .summary-label, .summary-value {
+        font-size: 13px;
+    }
+
+    .total-payment-row .summary-label,
+    .total-payment-row .summary-value {
+        font-size: 15px;
+    }
+
+    .checkout-footer {
+        padding: 12px 15px;
+    }
+
+    .total-summary-left {
+        margin-right: 15px;
+    }
+
+    .total-label {
+        font-size: 13px;
+    }
+
+    .final-price {
+        font-size: 18px;
+    }
+
+    .saving-info {
+        font-size: 11px;
+    }
+
+    .checkout-buttons {
+        gap: 6px;
+    }
+
+    .action-button {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+}

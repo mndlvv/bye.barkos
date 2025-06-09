@@ -1,0 +1,581 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* Greenish color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds (used for product image wrapper) */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --shadow-strong: rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    --border-color: #EEEEEE; /* Light grey border */
+    --button-green: #739E6D; /* The distinct green for chat button */
+    --button-text-color: #FFFFFF; /* White text on green buttons */
+    --light-grey-avatar: #D9D9D9; /* Light grey for avatar placeholder */
+
+    /* Specific colors for this page */
+    --good-item-color: #6B8E23; /* Green for checkmark details */
+    --bad-item-color: #CC0000; /* Red for cross details */
+    --sold-out-background: #F0F2F5; /* Light grey for "Habis" badge */
+    --sold-out-text-color: #888888; /* Grey text for "Habis" badge */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    padding-bottom: 60px; /* Space for fixed footer */
+}
+
+/* Header Styling */
+.product-detail-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-background); /* Light grey background for header */
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.back-icon:hover {
+    color: var(--main-accent-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+/* Main Container */
+.product-detail-container {
+    padding: 0px; /* No horizontal padding here, sections will have their own */
+    max-width: 450px; /* Consistent max width for mobile feel */
+    margin: 0 auto;
+    background-color: var(--background-color); /* White background for the main content area */
+}
+
+/* Product Image Section */
+.product-image-section {
+    background-color: var(--card-background); /* Light grey background */
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 15px; /* Space below image section */
+    position: relative; /* For positioning "Habis" badge */
+}
+
+.main-product-image {
+    width: 100%;
+    max-width: 250px; /* Adjusted to match the image scale for the pot */
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.sold-out-badge {
+    position: absolute;
+    top: 30px; /* Adjusted based on visual */
+    right: 30px; /* Adjusted based on visual */
+    background-color: var(--sold-out-background); /* Light grey from image */
+    color: var(--sold-out-text-color); /* Grey text from image */
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Product Info Section */
+.product-info-section {
+    padding: 0px 20px 20px 20px; /* Padding for info section */
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 22px; /* Price is larger */
+    font-weight: 700; /* Bold */
+    color: var(--main-accent-color); /* Green price */
+    margin: 0 0 10px 0; /* Space below price */
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 500; /* Medium weight */
+    color: var(--primary-text-color);
+    margin: 0 0 15px 0; /* Space below title */
+    line-height: 1.3;
+}
+
+.shipping-info {
+    display: flex;
+    gap: 15px; /* Space between badges */
+}
+
+.shipping-badge {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    font-weight: 500;
+}
+
+.shipping-badge img {
+    width: 24px; /* Icon size */
+    height: 24px;
+    margin-right: 5px; /* Space between icon and text */
+    object-fit: contain;
+}
+
+/* Product Description Section */
+.product-description-section {
+    background-color: var(--background-color); /* White background */
+    padding: 20px;
+    border-top: 1px solid var(--border-color); /* Top separator */
+    border-bottom: 1px solid var(--border-color); /* Bottom separator */
+    margin-bottom: 15px;
+}
+
+.product-description-text {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0 0 20px 0; /* Space below the general description text */
+}
+
+.detail-group {
+    margin-bottom: 20px; /* Space between detail groups */
+}
+
+.detail-group:last-child {
+    margin-bottom: 0;
+}
+
+.group-heading {
+    font-size: 16px;
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0 0 10px 0; /* Space below heading */
+}
+
+/* List items for details/conditions */
+.product-description-section ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.product-description-section ul li.detail-item {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin-bottom: 5px; /* Space between list items */
+    position: relative;
+    padding-left: 20px; /* Space for custom icon/bullet */
+}
+
+.product-description-section ul li.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Checkmark style for "Detail" section */
+.detail-item.good-item::before {
+    content: "✔"; /* Unicode checkmark character */
+    position: absolute;
+    left: 0;
+    color: var(--good-item-color); /* Green checkmark */
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: 700;
+}
+
+/* Cross style for "Kondisi" section */
+.detail-item.bad-item::before {
+    content: "✖"; /* Unicode multiplication sign (looks like a cross) */
+    position: absolute;
+    left: 0;
+    color: var(--bad-item-color); /* Red cross */
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: 700;
+}
+
+/* Seller Info Section */
+.seller-info-section {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color); /* Separator */
+    margin-bottom: 15px;
+}
+
+.seller-avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: var(--light-grey-avatar);
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.seller-details {
+    flex-grow: 1;
+}
+
+.seller-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+.seller-location {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.visit-button {
+    background-color: transparent;
+    border: 1px solid var(--main-accent-color);
+    color: var(--main-accent-color);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.visit-button:hover {
+    background-color: var(--main-accent-color);
+    color: var(--button-text-color);
+}
+
+/* Related Products Section */
+.related-products-section {
+    padding: 0px 20px 20px 20px;
+    margin-bottom: 20px; /* Space above footer */
+}
+
+.related-products-section .section-title {
+    /* Title is empty in the image, but kept for semantic structure */
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin-bottom: 15px;
+    height: 0; /* Hide title if empty */
+    overflow: hidden;
+}
+
+.related-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.product-card {
+    background-color: var(--card-background);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--shadow-strong);
+}
+
+.product-card img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.product-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    margin: 0 0 3px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--main-accent-color);
+    margin: 0;
+}
+
+/* Fixed Footer (Buttons) */
+.product-detail-footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--background-color);
+    box-shadow: 0 -2px 4px var(--shadow-light);
+    z-index: 1000;
+}
+
+.footer-button {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: not-allowed; /* Change cursor for disabled buttons */
+    transition: background-color 0.2s, color 0.2s;
+    border: none;
+    color: var(--button-text-color);
+    flex-shrink: 0;
+    opacity: 0.6; /* Dim disabled buttons */
+}
+
+.footer-button:hover:not([disabled]) { /* Apply hover only if not disabled */
+    background-color: #5C7F27;
+}
+
+.chat-button, .add-to-cart-button {
+    background-color: var(--button-green);
+    width: 60px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.chat-button svg, .add-to-cart-button svg {
+    fill: none;
+    stroke: var(--button-text-color);
+    stroke-width: 2;
+}
+
+.buy-now-button {
+    flex-grow: 1;
+    background-color: var(--main-accent-color);
+}
+
+/* Style for disabled buttons */
+.footer-button[disabled] {
+    opacity: 0.6; /* Dim the buttons */
+    background-color: var(--main-accent-color); /* Default disabled background to accent color */
+    /* Override specific background for disabled buttons if needed */
+    /* .chat-button[disabled], .add-to-cart-button[disabled] { background-color: #739E6D; } */
+    /* .buy-now-button[disabled] { background-color: #6B8E23; } */
+}
+
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+@media (max-width: 768px) {
+    .product-detail-header {
+        padding: 12px 15px;
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .product-image-section {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .main-product-image {
+        max-width: 200px; /* Adjusted slightly for pot image */
+    }
+
+    .sold-out-badge {
+        top: 20px;
+        right: 20px;
+        padding: 5px 10px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+
+    .product-info-section {
+        padding: 0px 15px 15px 15px;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .product-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .shipping-info {
+        gap: 10px;
+    }
+
+    .shipping-badge {
+        font-size: 13px;
+    }
+
+    .shipping-badge img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .product-description-section {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .product-description-text {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .group-heading {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .product-description-section ul li {
+        font-size: 13px;
+        padding-left: 18px; /* Adjust padding for icon */
+        margin-bottom: 3px;
+    }
+
+    /* Adjust icon size/position for smaller screens */
+    .detail-item.good-item::before,
+    .detail-item.bad-item::before {
+        font-size: 1em;
+        top: 2px;
+    }
+
+    .seller-info-section {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .seller-avatar-placeholder {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+    }
+
+    .seller-name {
+        font-size: 15px;
+    }
+
+    .seller-location {
+        font-size: 13px;
+    }
+
+    .visit-button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .related-products-section {
+        padding: 0px 15px 15px 15px;
+        margin-bottom: 10px;
+    }
+
+    .related-products-section .section-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .related-products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .product-card {
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .product-card img {
+        height: 80px;
+        margin-bottom: 6px;
+    }
+
+    .product-card-title {
+        font-size: 13px;
+    }
+
+    .product-card-price {
+        font-size: 12px;
+    }
+
+    .product-detail-footer {
+        height: 55px;
+    }
+
+    .footer-button {
+        font-size: 14px;
+    }
+
+    .chat-button, .add-to-cart-button {
+        width: 55px;
+    }
+
+    .chat-button svg, .add-to-cart-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* --- Global Page Transition Overlay (Add this to ALL your .css files) --- */
+
+/* Keyframes for the swipe effect */
+@keyframes swipeLeft {
+    from {
+        transform: translateX(0); /* Start at its original position (fully covering) */
+    }
+    to {
+        transform: translateX(-100%); /* Move completely to the left (off-screen) */
+    }
+}
+
+/* Base style for the overlay */
+.page-transition-overlay {
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-accent-color); /* Your chosen green color */
+    z-index: 9999; /* Ensure it's on top of everything */
+    pointer-events: none; /* Allow clicks to pass through AFTER animation */
+    /* Initially hidden or full opacity, handled by animation setup */
+    opacity: 1; /* Start opaque for the swipe */
+    /* Remove this if you add a JavaScript class for activation */
+}
+
+/* Animation for the overlay */
+.page-transition-overlay.active { /* This class will be added by JS */
+    animation: swipeLeft 400ms ease-out forwards;
+}
+
+/* Optional: Fade out the overlay completely after swipe if it's not removed */
+.page-transition-overlay.hidden {
+    display: none; /* Hide element completely when done */
+}

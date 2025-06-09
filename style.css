@@ -1,0 +1,351 @@
+:root {
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --price-color: #6B8E23; /* Standard blue for links/prices */
+    --background-color: #FFFFFF; /* Light grey background */
+    --card-background: #F0F2F5; /* White for cards */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow for cards/header */
+    --shadow-hover: rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+    --border-color: #EEEEEE; /* Light grey border for navbar */
+    --inactive-nav-color: #888888; /* Grey for inactive nav icons */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5; /* Default line height */
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; /* Matched to image padding */
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px var(--shadow-light); /* Subtle shadow */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1001; /* Ensure header is on top */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600; /* Semibold for logo */
+    color: var(--primary-text-color);
+}
+
+.chat-icon {
+    cursor: pointer;
+    color: var(--secondary-text-color); /* Default icon color */
+    transition: color 0.2s ease-in-out; /* Smooth transition for hover */
+}
+
+.chat-icon:hover {
+    color: #6B8E23; /* A subtle hover effect for the chat icon */
+}
+
+.chat-icon svg {
+    width: 28px; /* Based on visual estimation */
+    height: 28px; /* Based on visual estimation */
+    stroke-width: 2; /* Adjust stroke thickness if needed */
+}
+
+/* Main Container */
+.container {
+    padding: 20px; /* Padding for main content */
+    max-width: 1200px; /* Max width for larger screens, centered */
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    margin-bottom: 25px; /* Spacing below hero image */
+    text-align: center; /* Center the image */
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 360px; /* Adjusted to match image proportion in the screenshot, it looks narrower than a full 600px hero */
+    border-radius: 12px; /* Rounded corners as per image */
+    box-shadow: 0 4px 8px var(--shadow-hover); /* Stronger shadow for the main image */
+    object-fit: cover; /* Ensure image covers the area */
+    display: block; /* Remove extra space below image */
+    margin: 0 auto; /* Center the image within its container */
+}
+
+/* Categories Section */
+.categories-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px; /* Space between category cards */
+    margin-bottom: 30px; /* Spacing below categories */
+}
+
+.category-card {
+    background-color: var(--card-background);
+    padding: 15px; /* Padding inside card */
+    border-radius: 10px; /* Rounded corners for cards */
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-light); /* Light shadow */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover */
+    cursor: pointer;
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px; /* Ensure consistent height for cards */
+}
+
+.category-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px var(--shadow-hover); /* Stronger shadow on hover */
+}
+
+.category-card img {
+    width: 70px; /* Size of category icon */
+    height: 70px; /* Size of category icon */
+    object-fit: contain; /* Ensure image fits without cropping */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.category-name {
+    font-size: 14px;
+    font-weight: 500; /* Medium weight for category name */
+    color: var(--secondary-text-color);
+}
+
+/* Most Searched Section */
+.most-searched-section .section-title {
+    font-size: 20px;
+    font-weight: 600; /* Semibold for section title */
+    color: var(--primary-text-color);
+    margin-bottom: 20px; /* Spacing below title */
+}
+
+.most-searched-grid {
+    display: grid;
+    /* On mobile, usually 2 columns or adjustable */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px; /* Space between product cards */
+}
+
+.product-card {
+    background-color: var(--card-background);
+    padding: 15px; /* Padding inside card */
+    border-radius: 10px; /* Rounded corners for cards */
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-light); /* Light shadow */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover */
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px var(--shadow-hover); /* Stronger shadow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: 120px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Cover the area, possibly cropping */
+    border-radius: 8px; /* Rounded corners for product images */
+    margin-bottom: 10px; /* Space between image and title */
+}
+
+
+.product-card .product-title {
+    font-size: 16px;
+    font-weight: 600; /* Semibold for product title */
+    color: var(--primary-text-color);
+    margin-bottom: 5px; /* Space between title and price */
+    white-space: nowrap; /* Prevent title from wrapping if possible */
+    overflow: hidden; /* Hide overflow if text is too long */
+    text-overflow: ellipsis; /* Add ellipsis for long titles */
+}
+
+.product-card .product-price {
+    font-size: 14px;
+    color: var(--price-color); /* Blue for price */
+    font-weight: 600; /* Semibold for price */
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-around; /* Distribute space evenly */
+    align-items: center;
+    background-color: var(--card-background);
+    padding: 10px 0;
+    position: sticky; /* Make navbar sticky */
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid var(--border-color); /* Subtle top border */
+    box-shadow: 0 -2px 4px var(--shadow-light); /* Shadow above navbar */
+    z-index: 1000; /* Ensure navbar is above other content but below header */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column; /* Icon and text stacked */
+    align-items: center;
+    color: var(--inactive-nav-color); /* Default grey color */
+    text-decoration: none;
+    font-size: 12px; /* Font size for nav text */
+    transition: color 0.2s ease-in-out; /* Smooth transition for hover/active */
+}
+
+.nav-item svg {
+    width: 24px; /* Icon size */
+    height: 24px; /* Icon size */
+    margin-bottom: 3px; /* Space between icon and text */
+    stroke-width: 2; /* Default stroke width for icons */
+}
+
+.nav-item:hover {
+    color: var(--price-color); /* Blue on hover */
+}
+
+.nav-item.active {
+    color: var(--price-color); /* Blue for active item */
+}
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+/* For screens up to 768px wide (typical for most mobile and small tablet portrait) */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    .header {
+        padding: 12px 15px; /* Adjust header padding */
+    }
+
+    .logo {
+        font-size: 20px; /* Smaller logo font on mobile */
+    }
+
+    .chat-icon svg {
+        width: 24px; /* Smaller chat icon */
+        height: 24px;
+    }
+
+    .hero-image {
+        border-radius: 8px; /* Slightly less rounded corners */
+        max-width: 300px; /* Adjust max-width for smaller screens if needed */
+    }
+
+    .categories-section {
+        grid-template-columns: repeat(3, 1fr); /* Force 3 columns on small screens */
+        gap: 10px; /* Smaller gap */
+    }
+
+    .category-card {
+        padding: 10px;
+        min-height: 100px; /* Slightly smaller min height */
+    }
+
+    .category-card img {
+        width: 50px; /* Smaller category icons */
+        height: 50px;
+        margin-bottom: 5px; /* Reduced margin */
+    }
+
+    .category-name {
+        font-size: 11px; /* Smaller category name font */
+    }
+
+    .most-searched-section .section-title {
+        font-size: 18px; /* Smaller section title */
+        margin-bottom: 15px;
+    }
+
+    .most-searched-grid {
+        grid-template-columns: 1fr 1fr; /* Force 2 columns for products on most phones */
+        gap: 15px; /* Smaller gap */
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-card img {
+        height: 100px; /* Smaller product image height */
+    }
+
+    .product-card .product-title {
+        font-size: 14px; /* Smaller product title */
+    }
+
+    .product-card .product-price {
+        font-size: 12px; /* Smaller product price */
+    }
+
+    .navbar {
+        padding: 8px 0;
+    }
+
+    .nav-item {
+        font-size: 10px; /* Smaller nav item font */
+    }
+
+    .nav-item svg {
+        width: 20px; /* Smaller nav icons */
+        height: 20px;
+    }
+
+    /* Disable transform and reset shadow on hover for touch devices */
+    .category-card:hover,
+    .product-card:hover {
+        transform: none;
+        box-shadow: 0 2px 5px var(--shadow-light);
+    }
+}
+
+/* Specific adjustments for very small phones if needed, e.g., iPhone 5/SE */
+@media (max-width: 375px) {
+    .categories-section {
+        grid-template-columns: repeat(2, 1fr); /* Can go to 2 columns if 3 is too cramped */
+    }
+    .category-card {
+        padding: 8px;
+    }
+    .category-card img {
+        width: 45px;
+        height: 45px;
+    }
+    .category-name {
+        font-size: 10px;
+    }
+
+    .product-card img {
+        height: 80px;
+    }
+}
+
+
+/* For larger screens (tablets landscape and desktop) */
+@media (min-width: 769px) {
+    .container {
+        padding: 30px; /* More padding on larger screens */
+    }
+
+    .hero-image {
+        max-width: 600px; /* Allow hero image to be larger */
+    }
+
+    .categories-section {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* More columns if space allows */
+    }
+
+    .most-searched-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* More columns if space allows */
+    }
+}

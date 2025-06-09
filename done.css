@@ -1,0 +1,119 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* Greenish color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --border-color: #EEEEEE; /* Light grey border */
+    --button-green: #739E6D; /* The distinct green for primary buttons */
+    --button-text-color: #FFFFFF; /* White text on green buttons */
+    --radio-border-color: #D9D9D9; /* Light grey for radio border */
+
+    /* Specific color for Done page background */
+    --done-background-color: #739E6D; /* Same green as primary button */
+    --checkmark-circle-background: #FFFFFF; /* White circle for checkmark */
+    --checkmark-icon-color: #739E6D; /* Green checkmark icon */
+    --done-text-color: #FFFFFF; /* White text for "Pesanan Dibuat" */
+
+    /* Animation durations */
+    --enter-duration: 800ms; /* Durasi animasi masuk */
+    --exit-duration: 800ms; /* Durasi animasi keluar */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--done-background-color); /* Green background */
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Penting untuk mencegah scrollbar saat slide up */
+}
+
+.done-container {
+    text-align: center;
+}
+
+.checkmark-circle {
+    width: 120px;
+    height: 120px;
+    background-color: var(--checkmark-circle-background);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.checkmark-circle svg {
+    width: 80px;
+    height: 80px;
+    stroke: var(--checkmark-icon-color);
+    stroke-width: 2;
+    fill: none;
+}
+
+.done-message {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--done-text-color);
+    margin: 0;
+}
+
+/* --- Animasi Masuk (Slide Up) --- */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%); /* Mulai dari bawah */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0); /* Berakhir di posisi normal */
+        opacity: 1;
+    }
+}
+
+.enter-animation {
+    animation: slideInUp var(--enter-duration) ease-out forwards; /* Menggunakan ease-out */
+}
+
+/* --- Animasi Keluar (Fade Out) --- */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.exit-animation {
+    animation: fadeOut var(--exit-duration) ease-out forwards; /* Menggunakan ease-out */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+@media (max-width: 768px) {
+    .checkmark-circle {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .checkmark-circle svg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .done-message {
+        font-size: 20px;
+    }
+}

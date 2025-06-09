@@ -1,0 +1,228 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* New: price-color now used as main accent color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds (used for navbar) */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --shadow-hover: rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+    --border-color: #EEEEEE; /* Light grey border */
+    --inactive-nav-color: #888888; /* Grey for inactive nav icons */
+
+    /* Specific colors for Notif page */
+    --notif-item-background: #739E6D; /* Green background for notification items, similar to profile welcome card */
+    --notif-item-text-color: #FFFFFF; /* White text for notification items */
+    --notif-avatar-placeholder-color: #D9D9D9; /* Light grey for avatar placeholder */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    padding-bottom: 70px; /* Space for fixed navbar */
+}
+
+/* Header Styling (reused from profile header) */
+.notifications-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--background-color); /* White background for header */
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.back-icon:hover {
+    color: var(--main-accent-color); /* Hover accent color */
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    flex-grow: 1;
+    text-align: center;
+    margin-left: -44px; /* Offset to visually center title despite back icon */
+}
+
+/* Main Container */
+.notifications-container {
+    padding: 20px;
+    max-width: 450px; /* Max width to match screenshot's content width */
+    margin: 0 auto; /* Center the content */
+}
+
+/* Notification Item Styling */
+.notification-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--notif-item-background); /* Green background */
+    border-radius: 10px;
+    padding: 15px 20px; /* Padding inside the item */
+    margin-bottom: 15px; /* Space between items */
+    box-shadow: 0 2px 5px var(--shadow-light); /* Subtle shadow for each item */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Indicate clickable */
+}
+
+.notification-item:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px var(--shadow-hover); /* Stronger shadow on hover */
+}
+
+.notif-avatar-placeholder {
+    width: 40px; /* Size of avatar circle */
+    height: 40px;
+    background-color: var(--notif-avatar-placeholder-color); /* Light grey color */
+    border-radius: 50%; /* Perfect circle */
+    margin-right: 15px; /* Space between avatar and name */
+    flex-shrink: 0;
+}
+
+.notif-name {
+    font-size: 18px; /* Font size for name */
+    font-weight: 500; /* Medium weight */
+    color: var(--notif-item-text-color); /* White text color */
+    flex-grow: 1; /* Allow name to take available space */
+}
+
+/* Navbar Styling (reused from previous designs) */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--card-background); /* Using card-background for navbar background */
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 4px var(--shadow-light);
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--inactive-nav-color);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s ease-in-out;
+    padding: 5px;
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 3px;
+    stroke-width: 2;
+}
+
+.nav-item:hover {
+    color: var(--main-accent-color); /* Use the new accent color on hover */
+}
+
+.nav-item.active {
+    color: var(--main-accent-color); /* Use the new accent color for active item */
+}
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+@media (max-width: 768px) {
+    .notifications-header {
+        padding: 12px 15px;
+    }
+
+    .header-title {
+        font-size: 20px;
+        margin-left: -30px; /* Adjust offset for smaller screens */
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .notifications-container {
+        padding: 15px;
+    }
+
+    .notification-item {
+        padding: 12px 15px;
+        margin-bottom: 12px;
+    }
+
+    .notif-avatar-placeholder {
+        width: 35px; /* Slightly smaller avatar on small screens */
+        height: 35px;
+        margin-right: 12px;
+    }
+
+    .notif-name {
+        font-size: 16px; /* Slightly smaller name font */
+    }
+
+    .navbar {
+        padding: 8px 0;
+    }
+
+    .nav-item {
+        font-size: 10px;
+    }
+
+    .nav-item svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Disable transform and reset shadow on hover for touch devices */
+    .notification-item:hover {
+        transform: none;
+        box-shadow: 0 2px 5px var(--shadow-light);
+    }
+}
+
+/* For larger screens (tablets landscape and desktop) */
+@media (min-width: 769px) {
+    .notifications-container {
+        padding: 30px;
+        max-width: 500px; /* Can be slightly wider on desktop */
+    }
+
+    .notification-item {
+        padding: 20px 25px;
+        margin-bottom: 20px;
+    }
+
+    .notif-avatar-placeholder {
+        width: 45px;
+        height: 45px;
+    }
+
+    .notif-name {
+        font-size: 20px;
+    }
+}

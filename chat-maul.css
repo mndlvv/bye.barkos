@@ -1,0 +1,327 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* Greenish color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --border-color: #EEEEEE; /* Light grey border */
+    --button-green: #739E6D; /* The distinct green for chat bubbles */
+    --button-text-color: #FFFFFF; /* White text on green elements */
+    --light-grey-avatar: #D9D9D9; /* Light grey for avatar placeholder */
+
+    /* Specific colors for Chat page */
+    --incoming-bubble-bg: #E0E0E0; /* Grey background for incoming messages */
+    --outgoing-bubble-bg: #739E6D; /* Green background for outgoing messages */
+    --outgoing-bubble-text: #FFFFFF; /* White text for outgoing messages */
+    --input-field-bg: #EAEAEA; /* Light grey for input field */
+    --input-placeholder-color: #A0A0A0; /* Placeholder text color */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--card-background); /* Light grey background for the chat area */
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column; /* Stack header, main, footer vertically */
+    min-height: 100vh; /* Ensure page fills viewport */
+}
+
+/* Header Styling */
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--background-color); /* White background */
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1001; /* Ensure header is on top */
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Ensure back button is clickable */
+    margin-right: 20px; /* Space from profile info */
+}
+
+.back-icon:hover {
+    color: var(--main-accent-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-profile-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows it to take space */
+}
+
+.header-profile-info .avatar-placeholder {
+    width: 40px; /* Size for header avatar */
+    height: 40px;
+    background-color: var(--light-grey-avatar);
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.header-profile-info .user-details {
+    flex-grow: 1; /* Allows name and status to take space */
+}
+
+.header-profile-info .user-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+.header-profile-info .user-status {
+    font-size: 12px;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.header-profile-info .user-location {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin-left: 15px; /* Space from user details */
+    flex-shrink: 0;
+}
+
+
+/* Main Chat Container */
+.chat-container {
+    flex-grow: 1; /* Allow chat area to take all available space */
+    padding: 20px;
+    max-width: 600px; /* Max width for readability */
+    margin: 0 auto; /* Center chat container */
+    display: flex;
+    flex-direction: column; /* Stack messages vertically */
+    overflow-y: auto; /* Enable scrolling if chat is long */
+    scroll-behavior: smooth; /* Smooth scroll if content added dynamically */
+    padding-bottom: 80px; /* Space for the fixed input footer */
+}
+
+.message-row {
+    display: flex;
+    margin-bottom: 15px; /* Space between message rows */
+    align-items: flex-end; /* Align bubbles/avatars at the bottom */
+}
+
+.message-row.left {
+    justify-content: flex-start; /* Align incoming messages to the left */
+}
+
+.message-row.right {
+    justify-content: flex-end; /* Align outgoing messages to the right */
+}
+
+.message-avatar-placeholder {
+    width: 32px; /* Smaller avatar for chat messages */
+    height: 32px;
+    background-color: var(--light-grey-avatar);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.message-row.left .message-avatar-placeholder {
+    margin-right: 10px; /* Space between avatar and incoming bubble */
+}
+
+.message-row.right .message-avatar-placeholder {
+    margin-left: 10px; /* Space between outgoing bubble and avatar */
+}
+
+.message-content {
+    padding: 10px 15px;
+    border-radius: 18px; /* Rounded corners for chat bubbles */
+    max-width: 70%; /* Limit bubble width */
+    position: relative; /* For triangle pointer */
+}
+
+.message-content p {
+    margin: 0; /* Remove default paragraph margin */
+    font-size: 15px;
+}
+
+.incoming-message {
+    background-color: var(--incoming-bubble-bg); /* Grey bubble */
+    color: var(--primary-text-color);
+    border-bottom-left-radius: 4px; /* Sharper corner for incoming bubble where avatar is */
+}
+
+.outgoing-message {
+    background-color: var(--outgoing-bubble-bg); /* Green bubble */
+    color: var(--outgoing-bubble-text); /* White text */
+    border-bottom-right-radius: 4px; /* Sharper corner for outgoing bubble where avatar is */
+}
+
+/* Chat bubble image wrapper */
+.chat-image-wrapper {
+    background-color: var(--outgoing-bubble-bg); /* Use outgoing bubble color for image bubble background too */
+    border-radius: 8px; /* Rounded corners for image container */
+    padding: 5px; /* Padding inside the image bubble */
+    margin-top: 8px; /* Space above image if there's text */
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.chat-image-wrapper img {
+    width: 100%;
+    max-width: 180px; /* Max width for chat image */
+    height: auto;
+    display: block;
+    border-radius: 4px; /* Slightly rounded corners for image itself */
+}
+
+/* Chat Input Footer */
+.chat-input-footer {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--background-color); /* White background */
+    box-shadow: 0 -2px 4px var(--shadow-light);
+    position: sticky; /* Make it stick to the bottom */
+    bottom: 0;
+    z-index: 1000;
+}
+
+.camera-icon-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    transition: color 0.2s ease-in-out;
+    flex-shrink: 0;
+}
+
+.camera-icon-button:hover {
+    color: var(--main-accent-color);
+}
+
+.camera-icon-button svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.message-input {
+    flex-grow: 1; /* Allow input to fill available space */
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--input-field-bg); /* Light grey background */
+    border-radius: 20px; /* Highly rounded corners */
+    font-size: 15px;
+    color: var(--primary-text-color);
+    outline: none; /* Remove blue outline on focus */
+}
+
+.message-input::placeholder {
+    color: var(--input-placeholder-color); /* Placeholder text color */
+}
+
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+@media (max-width: 768px) {
+    .chat-header {
+        padding: 12px 15px;
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .header-profile-info .avatar-placeholder {
+        width: 35px;
+        height: 35px;
+    }
+
+    .header-profile-info .user-name {
+        font-size: 15px;
+    }
+
+    .header-profile-info .user-status {
+        font-size: 11px;
+    }
+
+    .header-profile-info .user-location {
+        font-size: 13px;
+        margin-left: 10px;
+    }
+
+    .chat-container {
+        padding: 15px;
+        padding-bottom: 70px; /* Adjust for smaller footer */
+    }
+
+    .message-row {
+        margin-bottom: 10px;
+    }
+
+    .message-avatar-placeholder {
+        width: 28px;
+        height: 28px;
+    }
+
+    .message-row.left .message-avatar-placeholder {
+        margin-right: 8px;
+    }
+
+    .message-row.right .message-avatar-placeholder {
+        margin-left: 8px;
+    }
+
+    .message-content {
+        padding: 8px 12px;
+        border-radius: 15px;
+    }
+
+    .message-content p {
+        font-size: 14px;
+    }
+
+    .chat-image-wrapper {
+        margin-top: 6px;
+    }
+
+    .chat-image-wrapper img {
+        max-width: 150px;
+    }
+
+    .chat-input-footer {
+        padding: 8px 15px;
+    }
+
+    .camera-icon-button {
+        padding: 6px;
+        margin-right: 8px;
+    }
+
+    .camera-icon-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .message-input {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}

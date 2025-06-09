@@ -1,0 +1,329 @@
+:root {
+    /* Color Palette (based on your updated palette) */
+    --primary-text-color: #333333;
+    --secondary-text-color: #555555;
+    --main-accent-color: #6B8E23; /* Greenish color */
+    --background-color: #FFFFFF; /* Pure white background */
+    --card-background: #F0F2F5; /* Light grey for card backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Light shadow */
+    --border-color: #EEEEEE; /* Light grey border */
+    --button-green: #739E6D; /* The distinct green for buttons */
+    --button-text-color: #FFFFFF; /* White text on green buttons */
+    --checkbox-border-color: #888888; /* Grey for checkbox border */
+    --checkbox-checked-color: #6B8E23; /* Accent color for checked checkbox */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    padding-bottom: 60px; /* Space for fixed footer */
+}
+
+/* Header Styling */
+.cart-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 4px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.back-icon:hover {
+    color: var(--main-accent-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-title {
+    font-size: 20px; /* Slightly smaller font for "Keranjang Saya" */
+    font-weight: 600;
+    color: var(--primary-text-color);
+    flex-grow: 1;
+    text-align: center;
+    margin-left: -44px; /* Offset to visually center title despite back icon */
+}
+
+/* Main Container */
+.cart-container {
+    padding: 0px 20px; /* No top/bottom padding to make select-all section flush */
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* Select All Section */
+.select-all-section {
+    display: flex;
+    align-items: center;
+    padding: 15px 0px; /* Vertical padding */
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+    margin-bottom: 10px; /* Space below this section */
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+}
+
+/* Custom Checkbox Styling */
+.custom-checkbox-container {
+    display: flex; /* Use flex to align checkbox and text */
+    align-items: center;
+    position: relative;
+    padding-left: 30px; /* Space for the custom checkbox */
+    margin-right: 15px; /* Space if there's text after checkbox */
+    cursor: pointer;
+    -webkit-user-select: none; /* Prevent text selection */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.custom-checkbox-container .custom-checkbox-input {
+    position: absolute;
+    opacity: 0; /* Hide default checkbox */
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom-checkbox-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 22px; /* Size of the custom checkbox */
+    width: 22px;
+    background-color: transparent;
+    border: 2px solid var(--checkbox-border-color); /* Grey border */
+    border-radius: 6px; /* Slightly rounded corners for checkbox */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* When the checkbox is checked, change background and border color */
+.custom-checkbox-container .custom-checkbox-input:checked ~ .custom-checkbox-checkmark {
+    background-color: var(--checkbox-checked-color); /* Accent green */
+    border-color: var(--checkbox-checked-color);
+}
+
+/* Create the checkmark (hidden by default) */
+.custom-checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox-container .custom-checkbox-input:checked ~ .custom-checkbox-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark */
+.custom-checkbox-container .custom-checkbox-checkmark:after {
+    left: 7px; /* Position checkmark */
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid white; /* White checkmark */
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Cart Items List */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0px; /* Vertical padding */
+    border-bottom: 1px solid var(--border-color); /* Separator line between items */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* No border after the last item */
+}
+
+.item-image-wrapper {
+    width: 80px; /* Fixed width for image container */
+    height: 80px; /* Fixed height for image container */
+    background-color: var(--card-background); /* Light grey background for image container */
+    border-radius: 8px; /* Rounded corners for image container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px; /* Space between image and details */
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: 0 2px 4px var(--shadow-light); /* Subtle shadow */
+}
+
+.item-image {
+    width: 70px; /* Image size inside wrapper */
+    height: 70px;
+    object-fit: contain; /* Ensure image fits */
+}
+
+.item-details {
+    flex-grow: 1; /* Allow details to take available space */
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    margin: 0 0 5px 0; /* Space below name */
+}
+
+.item-price {
+    font-size: 15px;
+    font-weight: 600; /* Semibold */
+    color: var(--main-accent-color); /* Green price */
+    margin: 0; /* Remove default margin */
+}
+
+/* Fixed Footer (Buttons) */
+.cart-footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    box-shadow: 0 -2px 4px var(--shadow-light);
+    z-index: 1000;
+}
+
+.footer-button {
+    flex: 1; /* Each button takes equal width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px; /* Vertical and horizontal padding */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.chat-button {
+    background-color: var(--button-green); /* Green background */
+    color: var(--button-text-color); /* White text */
+    gap: 8px; /* Space between icon and text */
+}
+
+.chat-button:hover {
+    background-color: #5C7F27; /* Slightly darker green on hover */
+}
+
+.chat-button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--button-text-color); /* White stroke for chat icon */
+    stroke-width: 2;
+}
+
+.buy-now-button {
+    background-color: var(--main-accent-color); /* Accent green for Buy Now button */
+    color: var(--button-text-color); /* White text */
+    border-left: 1px solid rgba(255,255,255,0.2); /* Subtle separator */
+}
+
+.buy-now-button:hover {
+    background-color: #5C7F27; /* Slightly darker green on hover */
+}
+
+/* --- Media Queries for Responsiveness (iPhone 16 Pro Max and other mobiles) --- */
+
+@media (max-width: 768px) {
+    .cart-header {
+        padding: 12px 15px;
+    }
+
+    .header-title {
+        font-size: 18px; /* Smaller font for "Keranjang Saya" */
+        margin-left: -30px; /* Adjust offset */
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .cart-container {
+        padding: 0px 15px;
+    }
+
+    .select-all-section {
+        padding: 12px 0px;
+        font-size: 15px;
+    }
+
+    .custom-checkbox-checkmark {
+        height: 20px; /* Smaller checkbox */
+        width: 20px;
+        border-radius: 5px;
+    }
+
+    .custom-checkbox-checkmark:after {
+        left: 6px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border-width: 0 2.5px 2.5px 0;
+    }
+
+    .cart-item {
+        padding: 12px 0px;
+    }
+
+    .item-image-wrapper {
+        width: 70px; /* Smaller image wrapper */
+        height: 70px;
+        margin-right: 12px;
+        border-radius: 6px;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-name {
+        font-size: 15px;
+    }
+
+    .item-price {
+        font-size: 14px;
+    }
+
+    .cart-footer {
+        padding: 0; /* Remove padding from footer itself, padding is in buttons */
+    }
+
+    .footer-button {
+        padding: 12px 8px; /* Smaller button padding */
+        font-size: 15px;
+    }
+
+    .chat-button svg {
+        width: 18px; /* Smaller icon in footer */
+        height: 18px;
+    }
+}
